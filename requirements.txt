@@ -5,3 +5,6 @@ pandas
 scikit_learn
 plotly
 gunicorn
+xgboost
+joblib
+tensorflow
