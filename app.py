@@ -2,6 +2,7 @@ import pandas as pd
 import numpy as np
 import joblib
 import tensorflow as tf
+import plotly.graph_objs as go
 
 from dash import Dash, html, dcc, Input, Output, State
 import dash_bootstrap_components as dbc
@@ -12,7 +13,7 @@ rf_model = joblib.load("best_random_forest_model.pkl")
 scaler = joblib.load("scaler_17cols.save")
 
 # Define expected input fields based on training features
-expected_features = model.feature_names_in_  # Requires scikit-learn >= 1.0
+expected_features = rf_model.feature_names_in_  # Requires scikit-learn >= 1.0
 
 # Initialize Dash app
 app = Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
@@ -53,7 +54,7 @@ app.layout = dbc.Container([
     dbc.Button("Predict Grade Class", id="predict-btn", color="primary"),
     html.Br(), html.Br(),
 
-    dbc.Alert(id='prediction-output', color='info')
+    dbc.Alert(id='prediction-output', color='info'),
     dcc.Graph(id='probability-graph')
 ])
 
@@ -64,7 +65,7 @@ app.layout = dbc.Container([
     Input('predict-btn', 'n_clicks'),
     [State(feature, 'value') for feature in expected_features] + [State("model-selector", "value")]
 )
-def predict_grade(n_clicks, *values):
+def predict_grade(n_clicks, *args):
     if n_clicks is None:
         return "Enter student data and click Predict.", {}
 
