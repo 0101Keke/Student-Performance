@@ -8,7 +8,7 @@ from dash import Dash, html, dcc, Input, Output, State
 import dash_bootstrap_components as dbc
 
 # Load trained model and scaler
-nn_model = tf.keras.models.load_model("feedforward_nn_model.keras")
+nn_model = tf.keras.models.load_model("student_ffnn_model.keras")
 rf_model = joblib.load("best_random_forest_model.pkl")
 scaler = joblib.load("scaler_17cols.save")
 
