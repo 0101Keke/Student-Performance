@@ -32,3 +32,5 @@ This is a full-stack machine learning application that predicts a student's **gr
   - A bar chart visualization of prediction probabilities
 
 This satisfies **Step 8: Apply a deep learning algorithm.**
+
+**Dash Application:** https://student-performance-9.onrender.com
